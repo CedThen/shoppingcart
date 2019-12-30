@@ -36,8 +36,7 @@ app.post('/signin', (req,res) => {
 
 })
 
-app.post('/register', (req,res) => {    
-    
+app.post('/register', (req,res) => {        
     const {email, password} = req.body;        
     const hash = bcrypt.hashSync(password);
     let isEmailAvailable = false;
@@ -66,10 +65,10 @@ app.post('/register', (req,res) => {
                     .then(trx.commit)
                     .catch(trx.rollback)
                 })
-                res.json("account made");
+                res.json({"RegisterStatus": true});
             }
             else{
-                res.json("email already in use");
+                res.json({"RegisterStatus": false});
             }
         });    
 })
